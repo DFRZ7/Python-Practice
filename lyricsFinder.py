@@ -80,3 +80,4 @@ else:
 # Good Test: Alan / Walker / Faded.
 # Bad Test: Post / Malone / Circles.
 # Bad Test: Post / Malone / Hello > But unexpected output.
+# https://rapidapi.com/Glavier/api/genius-song-lyrics1/
