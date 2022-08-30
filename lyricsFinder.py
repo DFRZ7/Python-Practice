@@ -13,9 +13,12 @@ artistLastName = input()
 print("Please enter the name of the song: \n")
 song = input()
 
+#We can add the print in the input function. To improve.
+
 print("Searching artist... \n")
 # Future improvement, add a timer so it prints every second until we get a reply.
 # Add logic in case artist not found, also improve one line imput artist, instead of first and last name.
+# https://www.askpython.com/python/python-variables#:~:text=Best%20Practices%20for%20Python%20Variable%20Naming%20Convention&text=Use%20only%20small%20case%20letters,its%20name%20with%20an%20underscore.
 
 conn = http.client.HTTPSConnection("genius-song-lyrics1.p.rapidapi.com")
 
@@ -26,6 +29,8 @@ headers = {
 
 conn.request("GET", "/search?q="+artistFirstName+"%20" +
              artistLastName+"&per_page=10&page=1", headers=headers)
+
+#Format fStrings, to improve. https://realpython.com/python-string-formatting/
 
 res = conn.getresponse()
 print("Artist found!")
@@ -38,6 +43,7 @@ for highlight in highlights:
     id = highlight["result"]["id"]
     fullTitle = highlight["result"]["full_title"]
     y = {"id": id, "fullTitle": fullTitle}
+    #Utilize variables that are more descriptive.
     obtainedList.append(y)
 
 i = 0
@@ -50,17 +56,22 @@ for item in obtainedList:
         songFound.append(obtainedList[i])
     i = i + 1
 
-id = 0
+#Counter based by length and not a fixed value.
+#Utilize variables more descriptive.
+
+id = None
 for songId in songFound:
     id = songId["id"]
+    id = str(id)
 
-id = str(id)
+#id = str(id)
 
 print("Searching lyrics now for you... Thank you for the patience ;) \n")
 # Future improvement, add a timer so it prints every second until we get a reply.
 # Add different types of replies to make it more interactive.
 
-if id != 0:
+if id != None:
+    print(type(id))
     try:
         headers = {
             'X-RapidAPI-Key': "0d2c926864msh1bbce36628c20f8p183728jsn27ae298d4ecc",
